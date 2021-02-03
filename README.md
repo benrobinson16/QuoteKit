@@ -31,5 +31,5 @@ If you have a quote you would like to add or an improvement to the code, please 
 
 ## License
 
-MIT License. Please see [license.md](license.md).
+MIT License. Please see [license.md](https://github.com/benrobinson16/QuoteKit/license.md).
 
