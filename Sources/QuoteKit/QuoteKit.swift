@@ -2,8 +2,10 @@
 //  QuoteKit.swift
 //  QuoteKit
 //
-//  Created by Ben Robinson on 3/2/2020.
-//  Licensed under MIT license.
+//  Created by Benjamin Robinson on 3/2/2020.
+//  Copyright (c) 2021 Benjamin Robinson
+//
+//  Licensed under the MIT license.
 //
 
 import Foundation
