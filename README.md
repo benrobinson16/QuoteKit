@@ -27,7 +27,7 @@ let q2 = provider.randomQuote()
 
 ## Contributions
 
-If you have a quote you would like to add or an improvement to the code, please open a pull request.
+If you have a quote you would like to add or an improvement to the code, please open an issue or a pull request.
 
 ## License
 
