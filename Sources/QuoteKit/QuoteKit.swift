@@ -34,11 +34,33 @@ public struct Quote: Equatable {
 // MARK: - QuoteProvider
 
 public struct QuoteProvider {
-    public static func randomQuote() -> Quote {
+    public func randomQuote() -> Quote {
         return quotes.randomElement()!
     }
     
-    public static let quotes = [
+    public func randomQuotes(num: Int) -> [Quote] {
+        var safeNum = num
+        if num > quotes.count {
+            print("Bad number of quotes requested")
+            safeNum = quotes.count
+        } else if num <= 0 {
+            print("Bad number of quotes requested")
+            safeNum = 1
+        }
+        
+        var selected: [Quote] = []
+        var quotesCopy = quotes
+        
+        for _ in 0..<safeNum {
+            let index = Int.random(in: 0..<quotesCopy.count)
+            let quote = quotesCopy.remove(at: index)
+            selected.append(quote)
+        }
+        
+        return selected
+    }
+    
+    public let quotes = [
         Quote(author: "Farnoosh Brock", body: "We should start choosing our thoughts like we choose our clothes for the day.", identifier: 0),
         Quote(author: "Walt Disney", body: "The way to get started is to quit talking and begin doing.", identifier: 1),
         Quote(author: "Roald Dahl", body: "If you have good thoughts, they will shine out of your face like sunbeams and you will always look lovely.", identifier: 2),
@@ -116,30 +138,30 @@ public struct QuoteProvider {
         Quote(author: "Osho", body: "A little foolishness, enough to enjoy life, and a little wisdom to avoid errors, that will do.", identifier: 74),
         Quote(author: "Gilbert Chesterton", body: "Without the rain there would be no rainbows.", identifier: 75),
         Quote(author: "Maxime Legace", body: "Challenges, failures, defeats and ultimately, progress, are what make your life worthwhile.", identifier: 76),
-        Quote(author: "Brian Tracy", body: "Optimism is the one quality more associated with success and happiness than any other.", comment: "Quotes"), identifier: 77),
+        Quote(author: "Brian Tracy", body: "Optimism is the one quality more associated with success and happiness than any other.", identifier: 77),
         Quote(author: "Steve Jobs", body: "Sometimes life hits you in the head with a brick. Don't lose faith.", identifier: 78),
         Quote(author: "Charles Swindon", body: "Life is 10 percent what happens to you and 90 percent how you respond to it.", identifier: 79),
         Quote(author: "Eleanor Roosevelt", body: "If life were predictable it would cease to be life, and be without flavour.", identifier: 80),
-        Quote(author: "Robert H. Schuller", body: "Tough times don’t last. Tough people do.", comment: "Body"), identifier: 81),
-        Quote(author: "motivationping.com", body: "Keep going. Everything you need will come to you at the perfect time.", comment: "Body"), identifier: 82),
-        Quote(author: "motivationping.com", body: "You have to be at your strongest when you’re feeling at your weakest.", comment: "Body"), identifier: 83),
-        Quote(author: "motivationping.com", body: "Never give up. Great things take time. Be patient.", comment: "Body"), identifier: 84),
-        Quote(author: "Confucius", body: "It does not matter how slowly you go as long as you do not stop.", comment: "Body"), identifier: 85),
-        Quote(author: "motivationping.com", body: "If you feel like giving up, just look back on how far you are already.", comment: "Body"), identifier: 86),
-        Quote(author: "Kenji Miyazawa", body: "We must embrace pain and burn it as fuel for our journey.", comment: "Body"), identifier: 87),
-        Quote(author: "Duke Ellington", body: "A problem is a chance for you to do your best.", comment: "Body"), identifier: 88),
-        Quote(author: "Bob Riley", body: "Hard times don’t create heroes. It is during the hard times when the ‘hero’ within us is revealed.", comment: "Body"), identifier: 89),
-        Quote(author: "Jillian Michaels", body: "It’s not about perfect. It’s about effort.", comment: "Body"), identifier: 90),
-        Quote(author: "Theodore Roosevelt", body: "Believe you can and you’re halfway there.", comment: "Body"), identifier: 91),
-        Quote(author: "John Tew", body: "You are so much more than what you are going through.", comment: "Body"), identifier: 92),
-        Quote(author: "Holy Holm", body: "Passion first and everything will fall into place.", comment: "Body"), identifier: 93),
-        Quote(author: "Zig Ziglar", body: "Difficult roads always lead to beautiful destinations.", comment: "Body"), identifier: 94),
-        Quote(author: "Unknown", body: "Staying positive does not mean that things will turn out okay. Rather it is knowing that you will be okay no matter how things turn out.", comment: "Body"), identifier: 95),
-        Quote(author: "motivationping.com", body: "Success is what happens after you have survived all of your disappointments.", comment: "Body"), identifier: 96),
-        Quote(author: "John Maxwell", body: "Goals may give focus, but dreams give power.", comment: "Body"), identifier: 97),
-        Quote(author: "Christopher Reeve", body: "Once you choose hope, anything’s possible.", comment: "Body"), identifier: 98),
-        Quote(author: "Plato", body: "The first and greatest victory is to conquer self.", comment: "Body"), identifier: 99),
-        Quote(author: "Marcus Garvey", body: "With confidence you have won before you have started.", comment: "Body"), identifier: 100),
+        Quote(author: "Robert H. Schuller", body: "Tough times don’t last. Tough people do.", identifier: 81),
+        Quote(author: "motivationping.com", body: "Keep going. Everything you need will come to you at the perfect time.", identifier: 82),
+        Quote(author: "motivationping.com", body: "You have to be at your strongest when you’re feeling at your weakest.", identifier: 83),
+        Quote(author: "motivationping.com", body: "Never give up. Great things take time. Be patient.", identifier: 84),
+        Quote(author: "Confucius", body: "It does not matter how slowly you go as long as you do not stop.", identifier: 85),
+        Quote(author: "motivationping.com", body: "If you feel like giving up, just look back on how far you are already.", identifier: 86),
+        Quote(author: "Kenji Miyazawa", body: "We must embrace pain and burn it as fuel for our journey.", identifier: 87),
+        Quote(author: "Duke Ellington", body: "A problem is a chance for you to do your best.", identifier: 88),
+        Quote(author: "Bob Riley", body: "Hard times don’t create heroes. It is during the hard times when the ‘hero’ within us is revealed.", identifier: 89),
+        Quote(author: "Jillian Michaels", body: "It’s not about perfect. It’s about effort.", identifier: 90),
+        Quote(author: "Theodore Roosevelt", body: "Believe you can and you’re halfway there.", identifier: 91),
+        Quote(author: "John Tew", body: "You are so much more than what you are going through.", identifier: 92),
+        Quote(author: "Holy Holm", body: "Passion first and everything will fall into place.", identifier: 93),
+        Quote(author: "Zig Ziglar", body: "Difficult roads always lead to beautiful destinations.", identifier: 94),
+        Quote(author: "Unknown", body: "Staying positive does not mean that things will turn out okay. Rather it is knowing that you will be okay no matter how things turn out.", identifier: 95),
+        Quote(author: "motivationping.com", body: "Success is what happens after you have survived all of your disappointments.", identifier: 96),
+        Quote(author: "John Maxwell", body: "Goals may give focus, but dreams give power.", identifier: 97),
+        Quote(author: "Christopher Reeve", body: "Once you choose hope, anything’s possible.", identifier: 98),
+        Quote(author: "Plato", body: "The first and greatest victory is to conquer self.", identifier: 99),
+        Quote(author: "Marcus Garvey", body: "With confidence you have won before you have started.", identifier: 100),
         Quote(author: "Luis Galarza", body: "Success is what comes after you stop making excuses.", identifier: 101),
         Quote(author: "J.M. Barrie", body: "The moment you doubt whether you can fly, you cease for ever to be able to do it.", identifier: 102),
         Quote(author: "Steve Martin", body: "Be so good they can’t ignore you.", identifier: 103),
