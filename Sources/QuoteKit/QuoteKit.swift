@@ -34,6 +34,8 @@ public struct Quote: Equatable {
 // MARK: - QuoteProvider
 
 public struct QuoteProvider {
+    public init() { }
+    
     public func randomQuote() -> Quote {
         return quotes.randomElement()!
     }
